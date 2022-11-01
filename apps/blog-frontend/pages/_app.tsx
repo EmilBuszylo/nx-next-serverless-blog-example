@@ -1,16 +1,17 @@
-import { AppProps } from 'next/app';
+import {AppProps} from 'next/app';
 import Head from 'next/head';
 import './styles.css';
+import {Layout} from "../components/Layout";
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function CustomApp({Component, pageProps}: AppProps) {
   return (
     <>
       <Head>
         <title>Welcome to blog-frontend!</title>
       </Head>
-      <main className="app">
+      <Layout>
         <Component {...pageProps} />
-      </main>
+      </Layout>
     </>
   );
 }

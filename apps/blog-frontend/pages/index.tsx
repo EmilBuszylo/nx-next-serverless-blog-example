@@ -2,7 +2,7 @@ import React from "react";
 import {GetServerSideProps} from 'next'
 import {BlogPost} from "@emer-blog/blog-post/entity";
 import {PaginateResult} from "@emer-blog/shared/utils";
-import {Card} from "../components/Card";
+import {Card} from "../components/Card/Card";
 import {Pagination} from "../components/Pagination/Pagination";
 import {DEFAULT_LIMIT, DEFAULT_PAGE} from "../components/Pagination/consts";
 
