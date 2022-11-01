@@ -4,7 +4,7 @@ interface Paginate<T = Record<string, unknown>[]> {
   limit?: number;
 }
 
-interface PaginateResult<T = Record<string, unknown>[]> {
+export interface PaginateResult<T = Record<string, unknown>[]> {
   results: T[]
   total: number;
   totalPages: number;
