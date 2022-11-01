@@ -34,8 +34,9 @@ export const getServerSideProps: GetServerSideProps<{ data: PaginateResult<BlogP
   const {query} = ctx
   const page = query?.page ?? DEFAULT_PAGE
   const limit = query?.limit ?? DEFAULT_LIMIT
+  const terms = query?.terms && query.terms.length > 2 && query.terms
 
-  const res = await fetch(`${process.env.BLOG_API_URL}/posts?page=${page}&limit=${limit}`)
+  const res = await fetch(`${process.env.BLOG_API_URL}/posts?page=${page}&limit=${limit}${terms ? `&terms=${terms}` : ""}`)
   const data = await res.json()
 
   return {props: {data}}

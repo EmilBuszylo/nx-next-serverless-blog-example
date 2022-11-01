@@ -13,6 +13,12 @@ export const Searcher = ({}) => {
         query: {page: router.query?.page ?? DEFAULT_PAGE, limit: router.query?.limit ?? DEFAULT_LIMIT, terms: val}
       })
     }
+    if (!val) {
+      return router.push({
+        pathname: `${router.pathname}`,
+        query: {page: router.query?.page ?? DEFAULT_PAGE, limit: router.query?.limit ?? DEFAULT_LIMIT}
+      })
+    }
   }
 
   return (
