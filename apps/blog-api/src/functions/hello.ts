@@ -1,10 +1,5 @@
 import {Context} from 'aws-lambda';
-import middy from "@middy/core";
-import jsonBodyParser from "@middy/http-json-body-parser";
-
-export const middyfy = (handler: any) => {
-  return middy(handler).use(jsonBodyParser());
-};
+import {middyfy} from "@emer-blog/shared/utils";
 
 export const hello = (req: any, ctx: Context) => {
 

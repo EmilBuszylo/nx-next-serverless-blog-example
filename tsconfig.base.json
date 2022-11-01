@@ -18,7 +18,8 @@
       "@emer-blog/blog-category/entity": [
         "libs/blog-category/entity/src/index.ts"
       ],
-      "@emer-blog/blog-post/entity": ["libs/blog-post/entity/src/index.ts"]
+      "@emer-blog/blog-post/entity": ["libs/blog-post/entity/src/index.ts"],
+      "@emer-blog/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

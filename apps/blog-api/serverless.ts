@@ -1,5 +1,6 @@
-import type { Serverless } from 'serverless/aws';
-import { baseServerlessConfig } from '../../serverless.base';
+import type {Serverless} from 'serverless/aws';
+import {baseServerlessConfig} from '../../serverless.base';
+import {categoriesGetter} from "./src/functions";
 
 const serverlessConfig: Partial<Serverless> = {
   ...baseServerlessConfig,
@@ -15,17 +16,18 @@ const serverlessConfig: Partial<Serverless> = {
     },
   },
   functions: {
-    'hello': {
-      handler: 'src/functions/hello.main',
-      events: [
-        {
-          http: {
-            method: 'post',
-            path: 'test/hello',
-          },
-        },
-      ],
-    },
+    categoriesGetter,
+    // 'hello': {
+    //   handler: 'src/functions/hello.main',
+    //   events: [
+    //     {
+    //       http: {
+    //         method: 'post',
+    //         path: 'test/hello',
+    //       },
+    //     },
+    //   ],
+    // },
   },
 };
 

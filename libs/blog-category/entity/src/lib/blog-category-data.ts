@@ -1,6 +1,6 @@
 import {BlogCategoryEntity} from "@emer-blog/blog-category/entity";
 
-export const BlogCategoryData: BlogCategoryEntity[] = [
+export const blogCategoryData: BlogCategoryEntity[] = [
   {
     "id": 3,
     "name": "Books",
