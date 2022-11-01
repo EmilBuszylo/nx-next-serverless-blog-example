@@ -1,6 +1,6 @@
 import {Context} from "aws-lambda";
 import {formatJSONResponse, middyfy, paginate} from "@emer-blog/shared/utils";
-import {blogPostData} from "@emer-blog/blog-post/entity";
+import {BlogPost, blogPostData} from "@emer-blog/blog-post/entity";
 
 interface Request {
   queryStringParameters: {
@@ -13,7 +13,7 @@ const handler = (req: Request, ctx: Context) => {
   ctx.callbackWaitsForEmptyEventLoop = false;
   const {page, limit} = req.queryStringParameters
 
-  return formatJSONResponse(200, paginate({
+  return formatJSONResponse(200, paginate<BlogPost>({
     items: blogPostData,
     page: page && Number(page),
     limit: limit && Number(limit)
