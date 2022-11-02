@@ -8,7 +8,7 @@ import {DEFAULT_LIMIT, DEFAULT_PAGE} from "../components/Pagination/consts";
 import {NoResults} from "../components/EmptyState/NoResults";
 import {BlogCategoryEntity} from "@emer-blog/blog-category/entity";
 
-export const Index: React.FC<{ data: PaginateResult<BlogPost> }> = ({data}) => {
+export const Index: React.FC<{ data: PaginateResult<BlogPostWithCategories> }> = ({data}) => {
   const {results, ...rest} = data
 
   const showPosts = results?.length > 0
@@ -18,7 +18,8 @@ export const Index: React.FC<{ data: PaginateResult<BlogPost> }> = ({data}) => {
       <div className="section relative pt-8 pb-8 md:pt-16 md:pb-0 bg-white">
         <div className="container xl:max-w-6xl mx-auto px-4">
           <header className="text-center mx-auto mb-12 lg:px-20">
-            <h2 className="text-2xl leading-normal mb-2 font-bold text-black">What We Do</h2>
+            <h2 className="text-3xl leading-normal mb-2 font-bold text-black">Our Cool Blog Posts</h2>
+            <p className="text-gray-600 text-lg">Suspendisse nec metus nec sapien ultrices vulputate eget eget est.</p>
           </header>
           <div
             className={`${showPosts ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "grid grid-cols-1"}`}>

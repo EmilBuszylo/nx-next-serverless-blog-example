@@ -22,7 +22,7 @@ export const PaginationButton: React.FC<{ page?: number }> = ({page, children}) 
   return (
     <Link href={{
       pathname: `${router.pathname}`,
-      query: {page: page, limit: router.query?.limit ?? DEFAULT_LIMIT}
+      query: {...router.query, page, limit: router.query?.limit ?? DEFAULT_LIMIT}
     }}
     >
       <span className="border border-gray-300 rounded px-3 py-2 hover:bg-gray-100 cursor-pointer">

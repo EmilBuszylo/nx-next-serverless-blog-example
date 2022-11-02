@@ -1,7 +1,6 @@
 import React from "react";
 import {useRouter} from "next/router";
 import {BlogCategoryEntity} from "@emer-blog/blog-category/entity";
-import {DEFAULT_LIMIT, DEFAULT_PAGE} from "../Pagination/consts";
 
 export const CategoriesFilterBar = ({isOpen}: { isOpen: boolean }) => {
   const router = useRouter()
@@ -20,10 +19,16 @@ export const CategoriesFilterBar = ({isOpen}: { isOpen: boolean }) => {
 
   React.useEffect(() => {
     if (queryCats !== currentCategories.join(",")) {
-      router.push({
-        pathname: router.pathname,
-        query: {page: DEFAULT_PAGE, limit: DEFAULT_LIMIT, categories: currentCategories.join(",")}
-      })
+      if (queryCats && !currentCategories.join(",")) {
+        router.push({
+          pathname: router.pathname,
+        })
+      } else {
+        router.push({
+          pathname: router.pathname,
+          query: {categories: currentCategories.join(",")}
+        })
+      }
     }
   }, [currentCategories, router.pathname])
 

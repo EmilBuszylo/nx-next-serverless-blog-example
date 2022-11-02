@@ -1,6 +1,5 @@
 import React from 'react'
 import {useRouter} from 'next/router'
-import {DEFAULT_LIMIT, DEFAULT_PAGE} from "./Pagination/consts";
 
 export const Searcher = ({}) => {
   const router = useRouter()
@@ -9,14 +8,13 @@ export const Searcher = ({}) => {
     const val = e?.target?.value
     if (val && val.length > 2) {
       return router.push({
-        pathname: `${router.pathname}`,
-        query: {page: DEFAULT_PAGE, limit: DEFAULT_LIMIT, terms: val}
+        pathname: router.pathname,
+        query: {terms: val}
       })
     }
     if (!val) {
       return router.push({
-        pathname: `${router.pathname}`,
-        query: {page: DEFAULT_PAGE, limit: DEFAULT_LIMIT}
+        pathname: router.pathname,
       })
     }
   }
