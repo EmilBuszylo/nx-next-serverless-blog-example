@@ -5,9 +5,12 @@ import {PaginateResult} from "@emer-blog/shared/utils";
 import {Card} from "../components/Card/Card";
 import {Pagination} from "../components/Pagination/Pagination";
 import {DEFAULT_LIMIT, DEFAULT_PAGE} from "../components/Pagination/consts";
+import {NoResults} from "../components/EmptyState/NoResults";
 
 export const Index: React.FC<{ data: PaginateResult<BlogPost> }> = ({data}) => {
   const {results, ...rest} = data
+
+  const showPosts = results?.length > 0
 
   return (
     <>
@@ -16,16 +19,23 @@ export const Index: React.FC<{ data: PaginateResult<BlogPost> }> = ({data}) => {
           <header className="text-center mx-auto mb-12 lg:px-20">
             <h2 className="text-2xl leading-normal mb-2 font-bold text-black">What We Do</h2>
           </header>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            className={`${showPosts ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "grid grid-cols-1"}`}>
             {
-              results?.map(r => (
-                <Card post={r} key={r.id}/>
-              ))
+              showPosts ?
+                results.map(r => (
+                  <Card post={r} key={r.id}/>
+                )) : (
+                  <NoResults/>
+                )
             }
           </div>
         </div>
       </div>
-      <Pagination {...rest}/>
+      {
+        showPosts && <Pagination {...rest}/>
+      }
+
     </>
   );
 }
@@ -35,8 +45,9 @@ export const getServerSideProps: GetServerSideProps<{ data: PaginateResult<BlogP
   const page = query?.page ?? DEFAULT_PAGE
   const limit = query?.limit ?? DEFAULT_LIMIT
   const terms = query?.terms && query.terms.length > 2 && query.terms
+  const categories = query?.categories
 
-  const res = await fetch(`${process.env.BLOG_API_URL}/posts?page=${page}&limit=${limit}${terms ? `&terms=${terms}` : ""}`)
+  const res = await fetch(`${process.env.BLOG_API_URL}/posts?page=${page}&limit=${limit}${terms ? `&terms=${terms}` : ""}${categories ? `&categories=${categories}` : ""}`)
   const data = await res.json()
 
   return {props: {data}}

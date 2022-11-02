@@ -10,13 +10,13 @@ export const Searcher = ({}) => {
     if (val && val.length > 2) {
       return router.push({
         pathname: `${router.pathname}`,
-        query: {page: router.query?.page ?? DEFAULT_PAGE, limit: router.query?.limit ?? DEFAULT_LIMIT, terms: val}
+        query: {page: DEFAULT_PAGE, limit: DEFAULT_LIMIT, terms: val}
       })
     }
     if (!val) {
       return router.push({
         pathname: `${router.pathname}`,
-        query: {page: router.query?.page ?? DEFAULT_PAGE, limit: router.query?.limit ?? DEFAULT_LIMIT}
+        query: {page: DEFAULT_PAGE, limit: DEFAULT_LIMIT}
       })
     }
   }

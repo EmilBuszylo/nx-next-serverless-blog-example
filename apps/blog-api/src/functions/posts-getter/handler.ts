@@ -25,7 +25,7 @@ const handler = (req: Request, ctx: Context) => {
     posts = posts.filter(p => {
       let isContains = false
       for (let c of categories.split(",")) {
-        if (p.categories.includes(Number(c))) {
+        if (p.categories.includes(blogCategoryData.find(el => el.slug === c).id)) {
           isContains = true
         }
 
@@ -36,9 +36,7 @@ const handler = (req: Request, ctx: Context) => {
 
   if (terms) {
     posts = posts.filter(p => p.title.toLowerCase().includes(terms.toLowerCase()))
-    console.log({posts})
   }
-
 
   return formatJSONResponse(200, paginate<BlogPostWithCategories>({
     items: posts.map(p => ({
