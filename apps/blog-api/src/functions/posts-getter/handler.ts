@@ -28,7 +28,6 @@ const handler = (req: Request, ctx: Context) => {
         if (p.categories.includes(blogCategoryData.find(el => el.slug === c).id)) {
           isContains = true
         }
-
       }
       return isContains
     })

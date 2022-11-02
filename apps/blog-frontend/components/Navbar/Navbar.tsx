@@ -10,12 +10,15 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="flex justify-between px-20 py-10 items-center bg-white">
+      <nav className="flex justify-between px-4 md:px-20 py-4 md:py-10 items-center bg-white">
         <Link href="/">
           <h1 className="text-xl text-gray-800 font-bold cursor-pointer">CoolBlog</h1>
         </Link>
         <div className="flex items-center">
-          <Searcher/>
+          {/* desktop environment*/}
+          <div className="hidden md:block">
+            <Searcher/>
+          </div>
           <ul className="flex items-center space-x-6">
             <li
               className={`font-semibold cursor-pointer ${router?.query?.categories ? "text-green-700" : "text-gray-700"}`}
@@ -25,9 +28,11 @@ export const Navbar = () => {
           </ul>
         </div>
       </nav>
-      {isCatOpen && (
-        <CategoriesFilterBar/>
-      )}
+      <CategoriesFilterBar isOpen={isCatOpen}/>
+      <div className="block md:hidden px-4 py-4">
+        {/*mweb environment */}
+        <Searcher/>
+      </div>
     </>
   )
 }
