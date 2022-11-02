@@ -6,6 +6,7 @@ import {Card} from "../components/Card/Card";
 import {Pagination} from "../components/Pagination/Pagination";
 import {DEFAULT_LIMIT, DEFAULT_PAGE} from "../components/Pagination/consts";
 import {NoResults} from "../components/EmptyState/NoResults";
+import {BlogCategoryEntity} from "@emer-blog/blog-category/entity";
 
 export const Index: React.FC<{ data: PaginateResult<BlogPost> }> = ({data}) => {
   const {results, ...rest} = data
@@ -39,7 +40,11 @@ export const Index: React.FC<{ data: PaginateResult<BlogPost> }> = ({data}) => {
   );
 }
 
-export const getServerSideProps: GetServerSideProps<{ data: PaginateResult<BlogPost> }> = async (ctx) => {
+export interface BlogPostWithCategories extends Omit<BlogPost, 'categories'> {
+  categories: BlogCategoryEntity[]
+}
+
+export const getServerSideProps: GetServerSideProps<{ data: PaginateResult<BlogPostWithCategories> }> = async (ctx) => {
   const {query} = ctx
   const page = query?.page ?? DEFAULT_PAGE
   const limit = query?.limit ?? DEFAULT_LIMIT

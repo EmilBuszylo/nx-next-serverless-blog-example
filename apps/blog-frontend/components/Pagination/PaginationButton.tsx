@@ -4,7 +4,7 @@ import Link from "next/link";
 import {DEFAULT_LIMIT, DEFAULT_PAGE} from "./consts";
 
 export const PaginationButton: React.FC<{ page?: number }> = ({page, children}) => {
-  let router = useRouter()
+  const router = useRouter()
   const currentPage = router.query?.page ? Number(router.query.page) : DEFAULT_PAGE
 
 
