@@ -17,8 +17,8 @@ export const PostImage: React.FC<PostImageProps> = ({url, title}) => {
         className="object-cover"
         src={error ? "/static/images/placeholder.webp" : url} alt={title}
         fill
-        sizes="(max-width: 350px) 100vw,
-              (max-width: 380px) 50vw,
+        sizes="(max-width: 768px) 100vw,
+              (max-width: 608px) 50vw,
               33vw"
         placeholder="blur"
         blurDataURL="/static/images/placeholder.webp"

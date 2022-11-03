@@ -13,13 +13,12 @@ const nextConfig = {
   env: {
     BLOG_API_URL: process.env.BLOG_API_URL
   },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
   nx: {
-    // Set this to true if you would like to to use SVGR
-    // See: https://github.com/gregberge/svgr
     svgr: false,
-    images: {
-      domains: ['picsum.photos']
-    },
   },
 };
 

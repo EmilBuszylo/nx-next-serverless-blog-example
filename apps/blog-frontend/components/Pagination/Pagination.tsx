@@ -19,7 +19,12 @@ export const Pagination: React.FC<PaginationProps> = ({nextPage, previousPage, t
   return (
     <div className="flex flex-col items-center py-12">
       <nav className="flex items-center space-x-1">
-        <PaginationButton page={previousPage}> &laquo;</PaginationButton>
+        <PaginationButton page={previousPage} aria-label="Previous page">
+          <svg className="w-3 h-3 inline-flex" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </PaginationButton>
 
         <PaginationButton page={startPage}>{startPage}</PaginationButton>
         {currentPage > 3 && (
@@ -56,7 +61,12 @@ export const Pagination: React.FC<PaginationProps> = ({nextPage, previousPage, t
             {totalPages}
           </PaginationButton>
         )}
-        <PaginationButton page={nextPage}> &raquo;</PaginationButton>
+        <PaginationButton page={nextPage} aria-label="Next page">
+          <svg className="w-3 h-3 inline-flex" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </PaginationButton>
       </nav>
     </div>
   )

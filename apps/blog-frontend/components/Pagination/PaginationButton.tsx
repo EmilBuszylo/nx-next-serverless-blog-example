@@ -3,14 +3,14 @@ import {useRouter} from "next/router";
 import Link from "next/link";
 import {DEFAULT_LIMIT, DEFAULT_PAGE} from "./consts";
 
-export const PaginationButton: React.FC<{ page?: number }> = ({page, children}) => {
+export const PaginationButton: React.FC<{ page?: number }> = ({page, ...props}) => {
   const router = useRouter()
   const currentPage = router.query?.page ? Number(router.query.page) : DEFAULT_PAGE
 
 
   if (!page) return (
     <div> <span
-      className="px-3 py-2 border border-border-default rounded bg-gray-100 opacity-40 focus:outline-none">{children}</span>
+      className="px-3 py-2 border border-border-default rounded bg-gray-100 opacity-40 focus:outline-none" {...props}/>
     </div>
   )
 
@@ -18,7 +18,8 @@ export const PaginationButton: React.FC<{ page?: number }> = ({page, children}) 
   if (currentPage === page) return (
     <div>
     <span
-      className="px-3 py-2 border border-border-default rounded bg-accent-default text-white">{children}</span></div>
+      className="px-3 py-2 border border-border-default rounded bg-accent-default text-white" {...props}/>
+    </div>
   )
 
   return (
@@ -27,9 +28,7 @@ export const PaginationButton: React.FC<{ page?: number }> = ({page, children}) 
       query: {...router.query, page, limit: router.query?.limit ?? DEFAULT_LIMIT}
     }}
     >
-      <span className="border border-border-default rounded px-3 py-2 hover:bg-gray-100 cursor-pointer">
-     {children}
-      </span>
+      <span className="border border-border-default rounded px-3 py-2 hover:bg-gray-100 cursor-pointer" {...props}/>
     </Link>
   )
 }
