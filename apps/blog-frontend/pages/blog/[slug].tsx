@@ -1,12 +1,13 @@
 import React from "react";
-import {LoremIpsum} from "lorem-ipsum";
 import {GetServerSideProps} from "next";
+import Error from 'next/error'
+import {LoremIpsum} from "lorem-ipsum";
 import {BlogPost} from "@emer-blog/blog-post/entity";
+import {BlogCategoryEntity} from "@emer-blog/blog-category/entity";
 import {PageHeader} from "../../components/Page/PageHeader";
 import {PageTitle} from "../../components/Page/PageTitle";
 import {PostImage} from "../../components/Post/PostImage";
 import {PostTag} from "../../components/Post/PostTag";
-import {BlogCategoryEntity} from "@emer-blog/blog-category/entity";
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -24,7 +25,17 @@ interface BlogPostWithBody extends Omit<BlogPost, 'categories'> {
   categories: BlogCategoryEntity[]
 }
 
-const BlogPostPage: React.FC<{ data: BlogPostWithBody }> = ({data}) => {
+interface BlogPostPageProps {
+  data: BlogPostWithBody
+  errorCode?: number
+}
+
+const BlogPostPage: React.FC<BlogPostPageProps> = ({data, errorCode}) => {
+
+  if (errorCode) {
+    return <Error statusCode={errorCode}/>
+  }
+
   const {title, imageUrl, excerpt, body, categories} = data
 
   return (
@@ -37,7 +48,7 @@ const BlogPostPage: React.FC<{ data: BlogPostWithBody }> = ({data}) => {
       <PostImage url={imageUrl} title={title}/>
       <div className="flex space-x-2 mb-2 max-w-screen-md mx-auto">
         {
-          categories.map(cat => (
+          categories?.map(cat => (
             <PostTag cat={cat}/>
           ))
         }
@@ -52,7 +63,7 @@ const BlogPostPage: React.FC<{ data: BlogPostWithBody }> = ({data}) => {
           <p className="mb-3 font-normal text-font-light">Full article is allowed only for non free
             users. If you want to read more please purchase subscription</p>
           <a href="#"
-             className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-accent-default rounded-lg hover:bg-green-800">
+             className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-accent-default rounded-lg hover:opacity-60 transition-[opacity]">
             Purchase Now
           </a>
         </div>
@@ -72,12 +83,13 @@ const BlogPostPage: React.FC<{ data: BlogPostWithBody }> = ({data}) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<{ data: BlogPost }> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps<BlogPostPageProps> = async (ctx) => {
   const slug = ctx.params?.slug
   const res = await fetch(`${process.env.BLOG_API_URL}/post/${slug}`)
+  const errorCode = res?.status !== 200 ? res.status : null
   const data = await res.json()
 
-  return {props: {data: {...data, body: lorem.generateSentences(5).split(".")}}}
+  return {props: {errorCode, data: {...data, body: lorem.generateSentences(5).split(".")}}}
 }
 
 export default BlogPostPage

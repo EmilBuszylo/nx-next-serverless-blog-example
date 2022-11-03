@@ -1,20 +1,29 @@
 import React from "react";
 import {GetServerSideProps} from 'next'
+import Error from "next/error";
 import {BlogPost} from "@emer-blog/blog-post/entity";
 import {PaginateResult} from "@emer-blog/shared/utils";
+import {BlogCategoryEntity} from "@emer-blog/blog-category/entity";
 import {Card} from "../components/Card/Card";
 import {Pagination} from "../components/Pagination/Pagination";
 import {DEFAULT_LIMIT, DEFAULT_PAGE} from "../components/Pagination/consts";
 import {NoResults} from "../components/EmptyState/NoResults";
-import {BlogCategoryEntity} from "@emer-blog/blog-category/entity";
 import {PageHeader} from "../components/Page/PageHeader";
 import {PageTitle} from "../components/Page/PageTitle";
-import {CategoriesFilterBar} from "../components/Categories/CategoriesFilterBar";
 import {Categories} from "../components/Categories/Categories";
 
-export const Index: React.FC<{ data: PaginateResult<BlogPostWithCategories> }> = ({data}) => {
-  const {results, ...rest} = data
+interface IndexPageProps {
+  data: PaginateResult<BlogPostWithCategories>
+  errorCode?: number
+}
 
+export const Index: React.FC<IndexPageProps> = ({data, errorCode}) => {
+
+  if (errorCode) {
+    return <Error statusCode={errorCode}/>
+  }
+
+  const {results, ...rest} = data
   const showPosts = results?.length > 0
 
   return (
@@ -46,7 +55,7 @@ export interface BlogPostWithCategories extends Omit<BlogPost, 'categories'> {
   categories: BlogCategoryEntity[]
 }
 
-export const getServerSideProps: GetServerSideProps<{ data: PaginateResult<BlogPostWithCategories> }> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (ctx) => {
   const {query} = ctx
   const page = query?.page ?? DEFAULT_PAGE
   const limit = query?.limit ?? DEFAULT_LIMIT
@@ -54,6 +63,7 @@ export const getServerSideProps: GetServerSideProps<{ data: PaginateResult<BlogP
   const categories = query?.categories
 
   const res = await fetch(`${process.env.BLOG_API_URL}/posts?page=${page}&limit=${limit}${terms ? `&terms=${terms}` : ""}${categories ? `&categories=${categories}` : ""}`)
+  const errorCode = res?.status !== 200 ? res.status : null
   const data = await res.json()
 
   return {props: {data}}
