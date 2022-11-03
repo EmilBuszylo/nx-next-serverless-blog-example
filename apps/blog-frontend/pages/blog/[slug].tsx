@@ -9,6 +9,7 @@ import {PageTitle} from "../../components/Page/PageTitle";
 import {PostImage} from "../../components/Post/PostImage";
 import {PostTag} from "../../components/Post/PostTag";
 import {SubscriptionBox} from "../../components/SubscriptionBox";
+import {PostSeo} from "../../components/Post/PostSeo";
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -40,38 +41,40 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({data, errorCode}) => {
   const {title, imageUrl, excerpt, body, categories} = data
 
   return (
-    <div className="text-center mx-auto lg:px-20">
-      <PageHeader>
-        <PageTitle>
-          {title}
-        </PageTitle>
-      </PageHeader>
-      <PostImage url={imageUrl} title={title}/>
-      <div className="flex space-x-2 mb-2 max-w-screen-md mx-auto">
-        {
-          categories?.map(cat => (
-            <PostTag key={cat.id} cat={cat}/>
-          ))
-        }
-      </div>
-      <article className="text-black max-w-screen-md mx-auto text-left">
-        <p className="font-semibold">
-          {excerpt}
-        </p>
-        <SubscriptionBox/>
-        <div className="flex flex-col space-y-6 blur-lg">
+    <>
+      <PostSeo title={title} imageUrl={imageUrl} description={excerpt}/>
+      <div className="text-center mx-auto lg:px-20">
+        <PageHeader>
+          <PageTitle>
+            {title}
+          </PageTitle>
+        </PageHeader>
+        <PostImage url={imageUrl} title={title}/>
+        <div className="flex space-x-2 mb-2 max-w-screen-md mx-auto">
           {
-            body.map(b => (
-              <p key={b.slice(0, 10)}>
-                {b}
-              </p>
+            categories?.map(cat => (
+              <PostTag key={cat.id} cat={cat}/>
             ))
           }
-
         </div>
+        <article className="text-black max-w-screen-md mx-auto text-left">
+          <p className="font-semibold">
+            {excerpt}
+          </p>
+          <SubscriptionBox/>
+          <div className="flex flex-col space-y-6 blur-lg">
+            {
+              body.map(b => (
+                <p key={b.slice(0, 10)}>
+                  {b}
+                </p>
+              ))
+            }
 
-      </article>
-    </div>
+          </div>
+        </article>
+      </div>
+    </>
   )
 }
 

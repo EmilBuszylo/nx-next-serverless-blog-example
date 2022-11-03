@@ -11,6 +11,7 @@ import {NoResults} from "../components/EmptyState/NoResults";
 import {PageHeader} from "../components/Page/PageHeader";
 import {PageTitle} from "../components/Page/PageTitle";
 import {Categories} from "../components/Categories/Categories";
+import {PageSeo} from "../components/Page/PageSeo";
 
 interface IndexPageProps {
   data: PaginateResult<BlogPostWithCategories>
@@ -28,6 +29,7 @@ export const Index: React.FC<IndexPageProps> = ({data, errorCode}) => {
 
   return (
     <>
+      <PageSeo title="Blog posts" description="uspendisse nec metus nec sapien ultrices vulputate eget eget est."/>
       <PageHeader>
         <PageTitle>Our Cool Blog Posts</PageTitle>
         <p className="text-gray-600 text-lg">Suspendisse nec metus nec sapien ultrices vulputate eget eget est.</p>

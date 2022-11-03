@@ -12,6 +12,10 @@ export const Pagination: React.FC<PaginationProps> = ({nextPage, previousPage, t
   const currentPage = router.query?.page ? Number(router.query.page) : DEFAULT_PAGE
   const startPage = 1
 
+  if (totalPages <= 1) {
+    return null
+  }
+
   return (
     <div className="flex flex-col items-center py-12">
       <nav className="flex items-center space-x-1">

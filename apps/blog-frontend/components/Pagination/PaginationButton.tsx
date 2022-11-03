@@ -9,14 +9,16 @@ export const PaginationButton: React.FC<{ page?: number }> = ({page, children}) 
 
 
   if (!page) return (
-    <a><span
-      className="px-3 py-2 border border-border-default rounded focus:outline-none">{children}</span></a>
+    <div> <span
+      className="px-3 py-2 border border-border-default rounded bg-gray-100 opacity-40 focus:outline-none">{children}</span>
+    </div>
   )
 
 
   if (currentPage === page) return (
-    <a><span
-      className="px-3 py-2 border border-border-default rounded bg-accent-default text-white">{children}</span></a>
+    <div>
+    <span
+      className="px-3 py-2 border border-border-default rounded bg-accent-default text-white">{children}</span></div>
   )
 
   return (
