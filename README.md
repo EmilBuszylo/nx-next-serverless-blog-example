@@ -6,6 +6,7 @@ This project was generated using [Nx](https://nx.dev).
 
 This project requires node >= 16.16.0. If you use nvm, please just type nvm use command to switch your node to
 appropriate version.
+Before the first run, install npm packages with your preferred package manager (I recommend yarn).
 
 ### Development server
 
