@@ -11,8 +11,7 @@ const serverlessConfig: Partial<Serverless> = {
   custom: {
     ...baseServerlessConfig.custom,
     'serverless-offline': {
-      lambdaPort: 3000,
-      httpPort: 3001,
+      httpPort: "${env:BLOG_API_PORT, 3001}",
     },
   },
   functions: {

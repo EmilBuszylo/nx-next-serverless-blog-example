@@ -1,4 +1,4 @@
-import type { Serverless } from 'serverless/aws';
+import type {Serverless} from 'serverless/aws';
 
 export const baseServerlessConfigProvider: Serverless['provider'] = {
   name: 'aws',
@@ -19,7 +19,7 @@ export const baseServerlessConfig: Partial<Serverless> = {
     individually: true,
     excludeDevDependencies: true,
   },
-  plugins: ['serverless-esbuild', 'serverless-offline'],
+  plugins: ['serverless-esbuild', 'serverless-offline', 'serverless-dotenv-plugin'],
   custom: {
     stage: '${opt:stage, self:provider.stage}',
     esbuild: {
@@ -28,9 +28,10 @@ export const baseServerlessConfig: Partial<Serverless> = {
       target: ['es2020'],
       sourcemap: true,
       sourcesContent: false,
-      define: { 'require.resolve': undefined },
+      define: {'require.resolve': undefined},
     },
   },
+  useDotenv: true,
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
