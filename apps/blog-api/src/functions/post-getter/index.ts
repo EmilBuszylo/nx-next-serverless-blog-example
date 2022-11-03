@@ -4,7 +4,7 @@ export default {
     {
       http: {
         method: 'get',
-        path: 'api/post/{id}',
+        path: 'api/post/{slug}',
       },
     },
   ],

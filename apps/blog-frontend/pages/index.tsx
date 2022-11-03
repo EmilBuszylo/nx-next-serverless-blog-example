@@ -7,6 +7,10 @@ import {Pagination} from "../components/Pagination/Pagination";
 import {DEFAULT_LIMIT, DEFAULT_PAGE} from "../components/Pagination/consts";
 import {NoResults} from "../components/EmptyState/NoResults";
 import {BlogCategoryEntity} from "@emer-blog/blog-category/entity";
+import {PageHeader} from "../components/Page/PageHeader";
+import {PageTitle} from "../components/Page/PageTitle";
+import {CategoriesFilterBar} from "../components/Categories/CategoriesFilterBar";
+import {Categories} from "../components/Categories/Categories";
 
 export const Index: React.FC<{ data: PaginateResult<BlogPostWithCategories> }> = ({data}) => {
   const {results, ...rest} = data
@@ -15,24 +19,21 @@ export const Index: React.FC<{ data: PaginateResult<BlogPostWithCategories> }> =
 
   return (
     <>
-      <div className="section relative pt-8 pb-8 md:pt-16 md:pb-0 bg-white">
-        <div className="container xl:max-w-6xl mx-auto px-4">
-          <header className="text-center mx-auto mb-12 lg:px-20">
-            <h2 className="text-3xl leading-normal mb-2 font-bold text-black">Our Cool Blog Posts</h2>
-            <p className="text-gray-600 text-lg">Suspendisse nec metus nec sapien ultrices vulputate eget eget est.</p>
-          </header>
-          <div
-            className={`${showPosts ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "grid grid-cols-1"}`}>
-            {
-              showPosts ?
-                results.map(r => (
-                  <Card post={r} key={r.id}/>
-                )) : (
-                  <NoResults/>
-                )
-            }
-          </div>
-        </div>
+      <PageHeader>
+        <PageTitle>Our Cool Blog Posts</PageTitle>
+        <p className="text-gray-600 text-lg">Suspendisse nec metus nec sapien ultrices vulputate eget eget est.</p>
+      </PageHeader>
+      <Categories/>
+      <div
+        className={`${showPosts ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "grid grid-cols-1"}`}>
+        {
+          showPosts ?
+            results.map(r => (
+              <Card post={r} key={r.id}/>
+            )) : (
+              <NoResults/>
+            )
+        }
       </div>
       {
         showPosts && <Pagination {...rest}/>

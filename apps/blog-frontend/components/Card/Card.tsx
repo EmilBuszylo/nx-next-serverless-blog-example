@@ -9,7 +9,7 @@ export const Card: React.FC<{ post: BlogPostWithCategories }> = ({post}) => {
 
   return (
     <div className="bg-white rounded-xl shadow-md border border-gray-200 rounded-lg max-w-sm mb-5">
-      <Link href={post.slug}>
+      <Link href={{pathname: `blog/${post.slug}`}}>
         <CardImage url={post.imageUrl} title={post.title}/>
       </Link>
       <div className="p-5 space-y-1">
