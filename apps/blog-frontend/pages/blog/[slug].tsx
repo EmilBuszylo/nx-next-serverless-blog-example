@@ -49,7 +49,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({data, errorCode}) => {
       <div className="flex space-x-2 mb-2 max-w-screen-md mx-auto">
         {
           categories?.map(cat => (
-            <PostTag cat={cat}/>
+            <PostTag key={cat.id} cat={cat}/>
           ))
         }
       </div>

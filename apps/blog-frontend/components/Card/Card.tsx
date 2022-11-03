@@ -19,7 +19,7 @@ export const Card: React.FC<{ post: BlogPostWithCategories }> = ({post}) => {
           ))}
         </div>
         <Link href={post.slug}>
-          <h5 className="block text-font-default font-bold text-xl tracking-tight mb-2">{title}</h5>
+          <h3 className="block text-font-default font-bold text-xl tracking-tight mb-2">{title}</h3>
         </Link>
         <p className="font-normal text-font-light mb-3">{excerpt}</p>
       </div>

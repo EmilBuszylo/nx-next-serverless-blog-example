@@ -1,7 +1,7 @@
 import React from 'react'
 import {useRouter} from 'next/router'
 
-export const Searcher = ({}) => {
+export const Searcher: React.FC<{ searchId: string }> = ({searchId}) => {
   const router = useRouter()
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +28,7 @@ export const Searcher = ({}) => {
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
       </svg>
       <input
-        className="ml-4 outline-none bg-transparent text-font-default" type="text" name="search" id="search"
+        className="ml-4 outline-none bg-transparent text-font-default" type="text" name={searchId} id={searchId}
         placeholder="Search..."
         onChange={onChange}/>
     </form>
