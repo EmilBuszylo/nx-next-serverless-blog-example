@@ -8,7 +8,7 @@ export const Categories = () => {
     <>
       <div className="flex flex-col md:hidden items-center">
         <button
-          className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 my-5"
+          className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-accent-default rounded-lg my-5"
           onClick={() => setIsCatOpen(!isCatOpen)}
         >
           Categories &#8964;

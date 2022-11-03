@@ -10,13 +10,13 @@ export const PaginationButton: React.FC<{ page?: number }> = ({page, children}) 
 
   if (!page) return (
     <a><span
-      className="px-3 py-2 border border-gray-300 rounded focus:outline-none">{children}</span></a>
+      className="px-3 py-2 border border-border-default rounded focus:outline-none">{children}</span></a>
   )
 
 
   if (currentPage === page) return (
     <a><span
-      className="px-3 py-2 border border-gray-300 rounded bg-blue-500 text-white">{children}</span></a>
+      className="px-3 py-2 border border-border-default rounded bg-accent-default text-white">{children}</span></a>
   )
 
   return (
@@ -25,7 +25,7 @@ export const PaginationButton: React.FC<{ page?: number }> = ({page, children}) 
       query: {...router.query, page, limit: router.query?.limit ?? DEFAULT_LIMIT}
     }}
     >
-      <span className="border border-gray-300 rounded px-3 py-2 hover:bg-gray-100 cursor-pointer">
+      <span className="border border-border-default rounded px-3 py-2 hover:bg-gray-100 cursor-pointer">
      {children}
       </span>
     </Link>

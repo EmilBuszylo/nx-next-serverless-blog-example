@@ -11,7 +11,7 @@ export const PostTag = ({cat}: { cat: BlogCategoryEntity }) => {
       }
     }>
       <div
-        className="text-green-700 font-semibold text-md cursor-pointer hover:opacity-60 transition-[opacity]">{cat.name}</div>
+        className="text-accent-default font-semibold text-md cursor-pointer hover:opacity-60 transition-[opacity]">{cat.name}</div>
     </Link>
   )
 }

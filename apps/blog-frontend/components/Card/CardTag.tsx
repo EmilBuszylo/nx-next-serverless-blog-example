@@ -14,7 +14,7 @@ export const CardTag = ({cat}: { cat: BlogCategoryEntity }) => {
       }
     }>
       <div
-        className="text-green-700 font-semibold text-sm cursor-pointer hover:opacity-60 transition-[opacity]">{cat.name}</div>
+        className="text-accent-default font-semibold text-sm cursor-pointer hover:opacity-60 transition-[opacity]">{cat.name}</div>
     </Link>
   )
 }

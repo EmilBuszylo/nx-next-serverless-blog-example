@@ -47,12 +47,12 @@ const BlogPostPage: React.FC<{ data: BlogPostWithBody }> = ({data}) => {
           {excerpt}
         </p>
         <div
-          className="mx-auto p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mb-12">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Unlimited Access</h5>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Full article is allowed only for non free
+          className="mx-auto p-6 max-w-sm bg-white rounded-lg border border-border-light shadow-md my-12">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-font-default">Unlimited Access</h5>
+          <p className="mb-3 font-normal text-font-light">Full article is allowed only for non free
             users. If you want to read more please purchase subscription</p>
           <a href="#"
-             className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800">
+             className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-accent-default rounded-lg hover:bg-green-800">
             Purchase Now
           </a>
         </div>

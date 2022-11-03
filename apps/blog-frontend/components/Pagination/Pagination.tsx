@@ -15,7 +15,7 @@ export const Pagination: React.FC<PaginationProps> = ({nextPage, previousPage, t
   return (
     <div className="flex flex-col items-center py-12">
       <nav className="flex items-center space-x-1">
-        <PaginationButton page={previousPage}>&laquo; </PaginationButton>
+        <PaginationButton page={previousPage}> &laquo;</PaginationButton>
 
         <PaginationButton page={startPage}>{startPage}</PaginationButton>
         {currentPage > 3 && (

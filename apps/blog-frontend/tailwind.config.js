@@ -1,6 +1,7 @@
 const {join} = require('path');
-
 const {createGlobPatternsForDependencies} = require('@nrwl/next/tailwind');
+const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 module.exports = {
   presets: [require('../../tailwind-workspace-preset.js')],
@@ -11,7 +12,21 @@ module.exports = {
   ],
   darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        accent: {
+          default: colors.green["700"]
+        },
+        font: {
+          light: colors.gray["700"],
+          default: colors.gray["900"],
+        },
+        border: {
+          light: colors.gray["200"],
+          default: colors.gray["300"],
+        }
+      },
+    },
   },
   variants: {
     extend: {},
